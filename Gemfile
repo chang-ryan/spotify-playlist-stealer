@@ -46,3 +46,4 @@ group :development do
 end
 
 gem 'rspotify'
+gem 'omniauth-oauth2', '1.3.1'
