@@ -1,0 +1,8 @@
+<!-- app/views/home/index.html.erb -->
+
+<% form_tag artists_path, method: "get", html: { class: "form" } do %>
+  <div>
+    <% text_field_tag(:artist_name, "", placeholder: "Enter artist name", class: "") %>
+  </div>
+  <% submit_tag "Search" %>
+<% end %>
