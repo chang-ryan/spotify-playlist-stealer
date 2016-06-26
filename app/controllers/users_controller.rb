@@ -4,25 +4,27 @@ class UsersController < ApplicationController
     # Now you can access user's private data, create playlists and much more
 
     name = spotify_user.email
-    playlists = spotify_user.playlists(limit: 10)
+    playlists = spotify_user.playlists(limit: 2)
     artists = []
     genres = []
 
-    playlists.each do |pl|
-      pl.tracks.each do |track|
-        unless artists.include?(track.artists.first.name)
-          artists << track.artists.first.name
-          genres << track.artists.first.genres.first if !track.artists.first.genres.empty?
-        end
+    user = User.find_or_create_by(name: name)
+
+    playlists.each do |list|
+      list.tracks(limit: 50).each do |track|
+        artist = track.artists.first
+        genre = artist.genres.first
+        artists << artist.name unless artists.include?(artist.name)
+        genres << genre if genre and !genres.include?(genre)
       end
     end
 
-    user = User.new(name: name)
-    user.save
+    new_or_found_artists = artists.collect { |name| Artist.find_or_create_by(name: name) }
+    user.artists = new_or_found_artists
 
     @name = name
     @playlists = playlists
-    @artists = artists
+    @artists = user.artists
     @genres = genres
   end
 end

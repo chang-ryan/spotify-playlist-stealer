@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :playlists
-  has_many :artists, through: :playlists
-  has_many :genres, through: :artists
+  has_many :artist_likes
+  has_many :artists, through: :artist_likes
   validates_uniqueness_of :name
 end
