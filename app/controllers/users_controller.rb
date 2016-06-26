@@ -13,9 +13,9 @@ class UsersController < ApplicationController
     playlists.each do |list|
       list.tracks(limit: 50).each do |track|
         artist = track.artists.first
-        genre = artist.genres.first.downcase
+        genre = artist.genres.first
         artists << artist.name unless artists.include?(artist.name) # pushes string
-        genres << genre if genre and !genres.include?(genre) # pushes string
+        genres << genre.downcase if genre and !genres.include?(genre) # pushes string
       end
     end
 
