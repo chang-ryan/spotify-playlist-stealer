@@ -1,3 +1,34 @@
 <!-- app/views/users/spotify.html.erb -->
 
-<h1 class="page-header">User Page</h1>
+<h1 class="page-header">User Page <%= @name %></h1>
+
+<ul>
+  <% @playlists.each do |pl| %>
+  <li>
+    <%= pl.name %>
+  </li>
+  <% end %>
+</ul>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <ul>
+        <% @artists.each do |artist| %>
+        <li>
+          <%= artist %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-xs-6">
+      <ul>
+        <% @genres.each do |genre| %>
+        <li>
+          <%= genre %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

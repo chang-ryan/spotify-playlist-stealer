@@ -1,18 +1,16 @@
 <!-- app/views/home/index.html.erb -->
 
-<h1 class="page-header">Spotify Demo</h1>
+
+
+<div class="container">
+  <h1 class="page-header">Give Ryan Your Playlists Demo</h1>
+</div>
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-sm-6">
       <%= link_to 'Sign in with Spotify', '/auth/spotify' %>
+      <p>so you can give him all your playlists!</p>
     </div>
   </div>
-
-  <%= form_tag artists_path, method: "get", html: { class: "form" } do %>
-  <div class="form-group col-xs-4">
-    <%= text_field_tag(:artist_name, "", placeholder: "Enter artist name", class: "form-control") %>
-  </div>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-  <% end %>
 </div>
